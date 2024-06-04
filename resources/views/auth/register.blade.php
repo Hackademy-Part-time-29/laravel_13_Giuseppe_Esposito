@@ -12,8 +12,15 @@
     @enderror  
     </div>
     <div class="mb-3">
-        <label class="form-label">Nome utente</label>
+        <label class="form-label">Nome</label>
         <input type="text" class="form-control" name="name" value="{{old('name')}}">
+    @error('name')
+        <span class="small text-danger">{{$message}}</span>
+    @enderror 
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cognome</label>
+        <input type="text" class="form-control" name="surname" value="{{old('surname')}}">
     @error('name')
         <span class="small text-danger">{{$message}}</span>
     @enderror 
