@@ -21,7 +21,7 @@
   </div>
 
   <div class="form-floating mb-3">
-    <textarea class="form-control" style="height: 100px" name="description" value="{{old('description', $category->description)}}"></textarea>
+    <textarea class="form-control" style="height: 100px" name="description">{{old('description', $category->description)}}</textarea>
     <label>Descrizione</label>
     @error('description')
         <span class="small text-danger">{{$message}}</span>

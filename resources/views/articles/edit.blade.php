@@ -24,15 +24,19 @@
                 @enderror
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description" value="{{old('description', $article->description)}}"></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description">{{old('description', $article->description)}}</textarea>
                     <label for="floatingTextarea2">Contenuto</label>
                 @error('description')
                     <span class="small text-danger">{{$message}}</span>
                 @enderror
                 </div>
                 <div class="mb-3">
+                    <p>Immagine attuale</p>
+                    <img src="{{Storage::url($article->cover)}}" alt="">
+                </div>
+                <div class="mb-3">
                     <label for="formFile" class="form-label">Carica un'immagine di copertina</label>
-                    <input class="form-control" type="file" id="formFile" name="cover" value="{{old('description', $article->cover)}}">
+                    <input class="form-control" type="file" id="formFile" name="cover">
                 @error('cover')
                     <span class="small text-danger">{{$message}}</span>
                 @enderror

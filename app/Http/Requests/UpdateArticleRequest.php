@@ -22,9 +22,9 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|min:3|max:50|unique:articles,name,' . $this->article->id,
+            'name'=>'required  |min:3 | max:50 | unique:articles,name,' . $this->article->id,
             'description'=>'required',
-            'cover'=>'mimes:jpg,bmp,png',
+            'cover'=>'sometimes | mimes:jpg,bmp,png',
         ];
     }
 }

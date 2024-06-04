@@ -24,7 +24,7 @@ class StoreArticleRequest extends FormRequest
         return [
             'name'=>'required | min:5 | max:50',
             'description'=>'required | min:5 | max:50',
-            'cover'=> 'mimes:jpg,bmp,png',
+            'cover'=> 'sometimes | mimes:jpg,bmp,png',
         ];
     }
 

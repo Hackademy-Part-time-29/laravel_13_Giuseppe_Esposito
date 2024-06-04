@@ -6,6 +6,8 @@ use App\Models\Article;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Requests\StoreArticleRequest;
 
 use App\Http\Requests\UpdateArticleRequest;
@@ -56,6 +58,11 @@ class ArticleController extends Controller
             $article->update([
                 'cover' => $request->file('cover')->storeAs('public/covers/'.$article->id, 'cover.jpg'),
             ]);
+
+            // $path=$request->file('cover')->storeAs('public/covers/'.$article->id, 'cover.jpg');
+            // $article->cover=$path;
+            // $article->save();
+
         }
 
         return redirect()->back()->with(['succes'=>'Articolo creato con successo!']);
@@ -89,8 +96,13 @@ class ArticleController extends Controller
         $article->update([
             'name'=>$request->name,
             'description'=>$request->description,
-            'cover'=>$request->cover,
         ]);
+
+        if($request->hasFile('cover')){
+            $path=$request->file('cover')->storeAs('public/covers/'.$article->id, 'cover.jpg');
+            $article->cover=$path;
+            $article->save();
+        }
 
         return redirect()->back()->with(['success'=>'Articolo modificato con successo']);
     }
@@ -100,6 +112,10 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        if($article->cover){
+            Storage::delete($article->cover);
+        }
+        
         $article->delete();
 
         return redirect()->back()->with(['success'=>'Articolo eliminato con successo']);

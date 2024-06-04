@@ -13,14 +13,14 @@
 
   <div class="mb-3">
     <label class="form-label">Nome</label>
-    <input type="text" class="form-control" name="name" value="{{old('title')}}">
+    <input type="text" class="form-control" name="name" value="{{old('name')}}">
     @error('name')
         <span class="small text-danger">{{$message}}</span>
     @enderror
   </div>
 
   <div class="form-floating mb-3">
-    <textarea class="form-control" style="height: 100px" name="description" value="{{old('description')}}"></textarea>
+    <textarea class="form-control" style="height: 100px" name="description">{{old('description')}}</textarea>
     <label>Descrizione</label>
     @error('description')
         <span class="small text-danger">{{$message}}</span>
