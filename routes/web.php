@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\MailController;
 
+use App\Http\Controllers\TicketController;
+
 use App\Http\Controllers\ArticleController;
 
 use App\Http\Controllers\CategoryController;
@@ -27,3 +29,5 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 Route::resource('categories', CategoryController::class)->middleware(['auth', 'verified']);
 
 Route::resource('articles', ArticleController::class)->middleware(['auth', 'verified']);
+
+Route::resource('tickets', TicketController::class)->middleware(['auth', 'verified']);

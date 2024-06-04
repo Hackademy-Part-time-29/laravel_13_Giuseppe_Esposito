@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+
+     //indichiamo le colonne "fillable" cioè riempibili
+     protected $fillable = ['object', 'description', 'status', 'image'];
 }

@@ -28,6 +28,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
+            <li><a class="dropdown-item" href="{{route('tickets.create')}}">Crea un Ticket</a></li>
+            <li><a class="dropdown-item" href="{{route('tickets.index')}}">Lista Ticket</a></li>
             <li><a class="dropdown-item" href="#" onclick="
             event.preventDefault();
             getElementById('form-logout').submit();

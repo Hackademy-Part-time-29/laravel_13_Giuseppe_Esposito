@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->string('object', 100);
+            $table->text('description');
+            $table->integer('status')->default(0); // 0 == aperto // 1 == in lavorazione // 2 == chiuso
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

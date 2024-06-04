@@ -29,7 +29,7 @@
                 <form method="POST" action="{{route('categories.destroy', $category)}}">
                     @csrf
                     {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-outline-danger" onclick="alert('Sei sicuro di voler eliminare la categoria)')">Elimina</button>
+                    <button type="submit" class="btn btn-outline-danger" onclick="alert('Sei sicuro di voler eliminare la categoria?)')">Elimina</button>
                 </form>
             </td>
         </tr>

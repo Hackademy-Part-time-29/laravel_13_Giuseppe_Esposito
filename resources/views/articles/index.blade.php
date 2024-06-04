@@ -27,7 +27,7 @@
                                             <form method="POST" action="{{route('articles.destroy', $article)}}">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-outline-danger" onclick="alert('Sei sicuro di voler eliminare l`articolo')">Elimina</button>
+                                                <button type="submit" class="btn btn-outline-danger" onclick="alert('Sei sicuro di voler eliminare l`articolo?')">Elimina</button>
                                             </form>
                                         </div>
                                 </div>
