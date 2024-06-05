@@ -31,3 +31,5 @@ Route::resource('categories', CategoryController::class)->middleware(['auth', 'v
 Route::resource('articles', ArticleController::class)->middleware(['auth', 'verified']);
 
 Route::resource('tickets', TicketController::class)->middleware(['auth', 'verified']);
+
+Route::get('tickets/closed/{ticket}', [TicketController::class, 'closeTicket'])->name('tickets.closed');

@@ -6,20 +6,42 @@ use App\Models\Ticket;
 
 use Illuminate\Http\Request;
 
+use App\Http\Middleware\IsAdmin;
+
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\StoreTicketRequest;
 
 use App\Http\Requests\UpdateTicketRequest;
 
-class TicketController extends Controller
+use Illuminate\Routing\Controllers\Middleware;
+
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+//Nuova interfaccia per usare i middleware nei controller
+
+//https://laravel.com/docs/11.x/controllers#controller-middleware
+
+class TicketController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('is_admin', only: ['destroy']), 
+            //'is_admin' è l'alias del custom middleware
+            
+            // L'alias si definisce all'interno del file bootstrap/app.php
+
+            //https://laravel.com/docs/11.x/middleware#registering-middleware
+        ];
+    }
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tickets = Ticket::orderBy('created_at', 'DESC')->get();
+        $tickets = Ticket::orderBy('id', 'DESC')->get();
         return view('tickets.index', compact('tickets'));
     }
 
@@ -63,6 +85,10 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
+        if($ticket->status!=0){
+            abort(403);
+        }
+        
         return view('tickets.edit', compact('ticket'));
     }
 
@@ -71,6 +97,10 @@ class TicketController extends Controller
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
+        if($ticket->status!=0){
+            abort(403);
+        }
+        
         $ticket->update([
             'object'=>$request->object,
             'description'=>$request->description,
@@ -90,12 +120,24 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        if($ticket->cover){
-            Storage::delete($ticket->cover);
+        if($ticket->status!=0){
+            abort(403);
+        }
+        
+        if($ticket->image){
+            Storage::delete($ticket->image);
         }
         
         $ticket->delete();
 
         return redirect()->back()->with(['success'=>'Ticket eliminato con successo']);
+    }
+
+    public function closeTicket(Ticket $ticket){
+        
+        $ticket->status=2;
+        $ticket->save();
+
+        return redirect()->back()->with(['success'=>'Ticket chiuso con successo']);
     }
 }

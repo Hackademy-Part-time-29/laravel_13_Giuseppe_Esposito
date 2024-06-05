@@ -15,12 +15,14 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('contact-us')}}">Contattaci</a>
         </li>
+        @auth
         <li class="nav-item">
           <a class="nav-link" href="{{route('articles.index')}}">Articoli</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('articles.create')}}">Crea articolo</a>
         </li>
+        @endauth
         <li class="nav-item dropdown me-2 d-flex">
           @auth
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
