@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use App\Models\Article;
 
 use Illuminate\Http\Request;
@@ -30,7 +32,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $authors = User::all();
+
+        return view('articles.create', compact('authors'));
     }
 
     /**
@@ -41,6 +45,7 @@ class ArticleController extends Controller
         $article = Article::create([
             'name'=>$request->name,
             'description'=>$request->description,
+            'author_id'=>$request->author_id,
         ]);
 
          // Salviamo l'immagine

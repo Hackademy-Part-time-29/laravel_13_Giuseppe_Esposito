@@ -27,3 +27,15 @@ Utilizzare tutte le best practice usate finora
 
 Pushare su GitHub con nome laravel_13_nome_cognome                      
 _______________________________________________________________________________________
+
+Selfwork Laravel - 13 - One-to-Many Relationship
+
+                            
+
+Rivedere la lezione 
+
+In un progetto con CRUD completo 
+
+    implementare la relazione One-to-Many tra User e Model 
+    pushare le modifiche su GitHub
+_________________________________________________________________________________________

@@ -25,6 +25,7 @@ class StoreArticleRequest extends FormRequest
             'name'=>'required | min:5 | max:50',
             'description'=>'required | min:5 | max:50',
             'cover'=> 'sometimes | mimes:jpg,bmp,png',
+            'author_id'=>'required | exists:users,id',
         ];
     }
 
@@ -37,6 +38,7 @@ class StoreArticleRequest extends FormRequest
                     'description.min' => 'Il contenuto è troppo corto',
                     'description.max' => 'Il contenuto è troppo lungo',
                     'cover.mimes' => 'Formato del file non valido',
+                    'author_id.required' => 'Inserisci l`autore',
         ];
     }
 }

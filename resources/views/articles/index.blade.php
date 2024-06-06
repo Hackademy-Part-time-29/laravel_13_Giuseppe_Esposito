@@ -22,6 +22,11 @@
                                     @endif
                                         <div class="card-body">
                                             <h5 class="card-title">{{$article->name}}</h5>
+                                            @empty($article->author)
+                                            <p>{{'Autore non presente'}}</p>
+                                            @else
+                                            <p>{{$article->author->name}} {{$article->author->surname}}</p>
+                                            @endempty
                                             <p class="card-text">{{$article->description ?? 'Corpo non presente'}}</p>
                                             <a href="{{route('articles.show', $article)}}" class="btn btn-outline-success mb-2">Mostra</a>
                                             <form method="POST" action="{{route('articles.destroy', $article)}}">

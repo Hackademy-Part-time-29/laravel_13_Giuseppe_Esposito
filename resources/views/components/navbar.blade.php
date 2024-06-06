@@ -26,7 +26,7 @@
         <li class="nav-item dropdown me-2 d-flex">
           @auth
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benvenuto, {{auth()->user()->name}}
+            Ciao, {{auth()->user()->name}}
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
