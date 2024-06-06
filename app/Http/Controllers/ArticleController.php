@@ -8,6 +8,8 @@ use App\Models\Article;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Collection;
+
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\StoreArticleRequest;
@@ -131,7 +133,7 @@ class ArticleController extends Controller
         $title = 'Articoli per autore:';
 
         $articles = $user->articles->sortByDesc('created_at')->paginate(12);
-        dd($articles);
+        
         return view('articles.index', compact('title', 'articles'));
     }
 }
