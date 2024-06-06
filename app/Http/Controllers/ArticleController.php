@@ -132,8 +132,12 @@ class ArticleController extends Controller
     {
         $title = 'Articoli per autore:';
 
+        //Non funzionano nessuna delle due
+
+        // $articles = Article::where('author_id', '=', $user->id)->get()->paginate(12);
+
         $articles = $user->articles->sortByDesc('created_at')->paginate(12);
-        
+
         return view('articles.index', compact('title', 'articles'));
     }
 }
