@@ -125,4 +125,13 @@ class ArticleController extends Controller
 
         return redirect()->back()->with(['success'=>'Articolo eliminato con successo']);
     }
+
+    public function articlesByAuthor(User $user)
+    {
+        $title = 'Articoli per autore:';
+
+        $articles = $user->articles->sortByDesc('created_at')->paginate(12);
+        dd($articles);
+        return view('articles.index', compact('title', 'articles'));
+    }
 }

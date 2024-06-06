@@ -33,3 +33,5 @@ Route::resource('articles', ArticleController::class)->middleware(['auth', 'veri
 Route::resource('tickets', TicketController::class)->middleware(['auth', 'verified']);
 
 Route::get('tickets/closed/{ticket}', [TicketController::class, 'closeTicket'])->name('tickets.closed');
+
+Route::get('/articles-by-author/{author}', [ArticleController::class, 'articlesByAuthor'])->name('articles.byAuthor');

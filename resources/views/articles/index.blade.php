@@ -25,7 +25,7 @@
                                             @empty($article->author)
                                             <p>{{'Autore non presente'}}</p>
                                             @else
-                                            <p>{{$article->author->name}} {{$article->author->surname}}</p>
+                                            <p>Autore: <a href="{{route('articles.byAuthor', $article->author)}}" class="link-underline link-underline-opacity-0">{{$article->author->name}} {{$article->author->surname}}</a></p>
                                             @endempty
                                             <p class="card-text">{{$article->description ?? 'Corpo non presente'}}</p>
                                             <a href="{{route('articles.show', $article)}}" class="btn btn-outline-success mb-2">Mostra</a>
